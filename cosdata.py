@@ -1,6 +1,7 @@
 import csv
 import datetime
 import os
+import codecs
 import sys
 '''
 說明:
@@ -30,8 +31,8 @@ def find_unroasted_file():
 
 
 def roast_the_data(RTD_file_name):
-    row_data = open(RTD_file_name, 'r')
-    roast_data = open(RTD_file_name.replace('.csv', '_roast.csv'), 'w', newline='')
+    row_data = codecs.open(RTD_file_name, 'r', encoding='utf-8')
+    roast_data = open(RTD_file_name.replace('.csv', '_roast.csv'), 'w', newline='', encoding='utf-8')
     w = csv.writer(roast_data)
     line = 0
 
