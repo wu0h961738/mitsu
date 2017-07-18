@@ -35,7 +35,7 @@ class insert_product_fr():
         self.brand_name = Label(self.frame, text=bid[0])
         #self.roasted_name = Label(self.frame, textvariable=self.p_name)
         self.roasted_name = Text(self.frame, height=1, borderwidth=0)
-        self.roasted_name.insert(1.0, self.p_name.get())
+        self.roasted_name.insert(1.0, self.data_list[self.x2]+self.p_name.get())
         self.attribute_title = Label(self.frame, text="產品屬性")
         self.attr_subclass_title = Label(self.frame, text="產品種類")
         self.attr_subclass = ttk.Combobox(self.frame, width=10, values=self.return_subclass())

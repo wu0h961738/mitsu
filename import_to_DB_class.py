@@ -30,6 +30,9 @@ def insert_restore(file_name, prod_name):
 def search_restore(file_name):
     return "SELECT prod_name FROM restore_table WHERE file_name = '%s'" % file_name
 
+def search_restore_id(file_name):
+    return "SELECT pid FROM restore_table WHERE file_name = '%s'" % file_name
+
 def search_brand(bid):
     return "SELECT name_brand FROM brandlist WHERE brand_code = '%s'" % bid
 '''

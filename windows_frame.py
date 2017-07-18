@@ -120,21 +120,19 @@ class NotebookDemo(Frame):
         # test = Label(frame, textvariable=testo).pack(side=LEFT)
 
     def to_restore(self):
-
-
         #print(type(prod_temp))
         if cursor.execute(idb.search_restore(self.file_name.get())):
             prod_temp = cursor.fetchone()
             if prod_temp[0] == self.p_name.get():
                 messagebox.showinfo('資料庫提示', '資料庫已更新為最新!勿拍打餵食!')
             else:
-                cursor.execute("UPDATE restore_table SET prod_name= '%s' WHERE file_name='%s'"
-                               % (self.p_name.get(), self.file_name.get()))
+                cursor.execute("UPDATE restore_table SET prod_name= '%s', pid= '%s'  WHERE file_name='%s'"
+                               % (self.p_name.get(), self.data_list[self.x2],  self.file_name.get()))
                 db.commit()
                 messagebox.showinfo('資料庫提示', '資料庫更新成功!')
         else:
-            cursor.execute("INSERT INTO restore_table(file_name, prod_name) VALUE ('%s','%s')"
-                           % (self.file_name.get(), self.p_name.get()))
+            cursor.execute("INSERT INTO restore_table(file_name, prod_name, pid) VALUE ('%s','%s','%s')"
+                           % (self.file_name.get(), self.p_name.get(), self.data_list[self.x2]))
             db.commit()
             messagebox.showinfo('資料庫提示', '資料上傳成功!')
 
@@ -167,13 +165,13 @@ class NotebookDemo(Frame):
         file_n.set(filename)
 
     def yield_data(self, filename):  # yield 批次讀取資料
-        data = open(filename, 'r')
+        data = open(filename, 'r', encoding='utf8')
         #偵測是否有處理過資料
 
-        if cursor.execute(idb.search_restore(self.file_name.get())):
-            prod_name = cursor.fetchone()
+        if cursor.execute(idb.search_restore_id(self.file_name.get())):
+            prod_id = cursor.fetchone()
             for emp in csv.reader(data):
-                if prod_name[0] in emp[1]:
+                if prod_id[0] in emp[0]:
                     yield emp
                     break
 
