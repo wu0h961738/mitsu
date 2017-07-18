@@ -8,7 +8,7 @@ import structure as st
 import windows_frame as main_lo
 
 from tkinter import filedialog
-db = SQL.connect("localhost", "root", 'tl3n3xk7', 'cosmetic', charset='utf8')
+db = SQL.connect("192.168.1.108", "wu0h961738", 'tl3n3xk7', 'cosmetic', charset='utf8')
 cursor = db.cursor()
 
 

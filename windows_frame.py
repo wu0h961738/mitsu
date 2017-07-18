@@ -261,7 +261,7 @@ def on_closing():
         win.destroy()
 
 if __name__ == '__main__':
-    db = SQL.connect("localhost", "wu0h961738", db_password, db_name, charset='utf8')
+    db = SQL.connect("192.168.1.108", "wu0h961738", db_password, db_name, charset='utf8')
     cursor = db.cursor()
     win = Tk()
     win.protocol("WM_DELETE_WINDOW", on_closing)
