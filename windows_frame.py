@@ -137,21 +137,24 @@ class NotebookDemo(Frame):
             messagebox.showinfo('資料庫提示', '資料上傳成功!')
 
     def askopenfilename(self, file, p_name):
-        self.file_opt = options = {}
-        options['defaultextension'] = '.csv'
-        options['filetypes'] = [('all files', '.*'), ('csv files', '.csv')]
-        options['initialdir'] = os.getcwd()
-        options['initialfile'] = 'myfile.csv'
-        options['title'] = '選擇要餵的資料'
-        # get filename
-        filename = filedialog.askopenfilename(**self.file_opt)
-        file.set(filename)
-        file_temp = filename.split('/')
-        self.file_name.set(file_temp[-1])
-        self.generator_yield_data = self.yield_data(filename)
-        self.update2restore.pack(**self.widget_opt)
-        self.yield_data_wrap()
-        self.update()
+        try:
+            self.file_opt = options = {}
+            options['defaultextension'] = '.csv'
+            options['filetypes'] = [('all files', '.*'), ('csv files', '.csv')]
+            options['initialdir'] = os.getcwd()
+            options['initialfile'] = 'myfile.csv'
+            options['title'] = '選擇要餵的資料'
+            # get filename
+            filename = filedialog.askopenfilename(**self.file_opt)
+            file.set(filename)
+            file_temp = filename.split('/')
+            self.file_name.set(file_temp[-1])
+            self.generator_yield_data = self.yield_data(filename)
+            self.update2restore.pack(**self.widget_opt)
+            self.yield_data_wrap()
+            self.update()
+        except:
+            pass
 
     def aof(self, file_n):
         self.file_opt = options = {}
