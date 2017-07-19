@@ -69,8 +69,11 @@ class NotebookDemo(Frame):
         nb.add(frame, text='煮sap資料', underline=0, padding=2)
 
     def roast_row_file(self):
+        try:
             cosd.roast_the_data(self.row_file_name.get())
             self.file_mention_text.pack()
+        except:
+            messagebox.showinfo('資料輸入提示', '尚未選擇煮煮資料')
 
     def callback(event):
         print("say something")
@@ -150,8 +153,8 @@ class NotebookDemo(Frame):
             file_temp = filename.split('/')
             self.file_name.set(file_temp[-1])
             self.generator_yield_data = self.yield_data(filename)
-            self.update2restore.pack(**self.widget_opt)
             self.yield_data_wrap()
+            self.update2restore.pack(**self.widget_opt)
             self.update()
         except:
             pass
