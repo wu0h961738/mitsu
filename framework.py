@@ -58,13 +58,17 @@ class insert_product_fr():
         self.roasted_name.pack(**self.widget_opt)
         self.attribute_title.pack(**self.widget_opt)
         self.attr_subclass_title.pack(side=LEFT)
-        self.attr_subclass.pack(**self.widget_opt, side=LEFT)  # subclass menu
+        self.attr_subclass.pack(**self.widget_opt)  # subclass menu
+        self.attr_subclass.pack(side=LEFT)
         self.attr_function_title.pack(side=LEFT)
-        self.attr_function.pack(**self.widget_opt, side=LEFT)  # subclass menu
+        self.attr_function.pack(**self.widget_opt)
+        self.attr_function.pack(side=LEFT)  # subclass menu
         self.attr_type_title.pack(side=LEFT)
-        self.attr_type.pack(**self.widget_opt, side=LEFT)  # type menu
+        self.attr_type.pack(**self.widget_opt)  # type menu
+        self.attr_type.pack(side=LEFT)
         self.attr_parcel_title.pack(side=LEFT)
-        self.attr_parcel.pack(**self.widget_opt, side=LEFT)  # type menu
+        self.attr_parcel.pack(**self.widget_opt)  # type menu
+        self.attr_parcel.pack(side=LEFT)
         self.add_event.pack(**self.widget_opt)  # XXXXXXXXXXXXXXXXXXXXXXX新增產品
 
     def insert_product_fr_forget(self):
@@ -251,7 +255,7 @@ class insert_set_fr(insert_product_fr):
 
         self.new_single(set_product_count)
         self.new_product_btn = Button(self.bottom_frame, text="+新增單品", command=lambda count=set_product_count:
-            self.new_single(count),underline=0)
+            self.new_single(count), underline=0)
 
         self.set_new_btn = Button(self.bottom_frame, text="新增特惠組", command=lambda count=set_product_count:
             self.add_set(count))
@@ -260,7 +264,8 @@ class insert_set_fr(insert_product_fr):
     def insert_set_fr_pack(self):
         self.frame.pack(**self.widget_opt)
         self.set_entry_frame.pack(**self.widget_opt)
-        self.bottom_frame.pack(**self.widget_opt, side=BOTTOM)
+        self.bottom_frame.pack(**self.widget_opt)
+        self.bottom_frame.pack(side=BOTTOM)
         self.new_product_btn.pack()
         Label(self.bottom_frame, text='').pack(**self.widget_opt)
         self.set_new_btn.pack(**self.widget_opt)
@@ -309,8 +314,10 @@ class insert_set_fr(insert_product_fr):
 
         new_frame.pack(expand=Y, fill=BOTH)
         new_frame_prod.pack(expand=Y, fill=BOTH)
-        multi_item_frame.pack(**self.widget_opt, side=LEFT)
-        not_in_db_frame.pack(**self.widget_opt, side=LEFT)
+        multi_item_frame.pack(**self.widget_opt)
+        multi_item_frame.pack(side=LEFT)
+        not_in_db_frame.pack(**self.widget_opt)
+        not_in_db_frame.pack(side=LEFT)
         new_btn.pack(side=BOTTOM)
 
     def new_set_item(self):
@@ -347,10 +354,10 @@ class insert_set_fr(insert_product_fr):
 
     def pos_new_mult(self, frame, prod): #新增一個多重選擇的set_frame
         mult_pro_frame = Frame(frame)
-        prod_name = Label(mult_pro_frame,text=prod.name)
+        prod_name = Label(mult_pro_frame, text=prod.name)
         for item in prod.list:
             var=BooleanVar()
-            check_item = Checkbutton(mult_pro_frame,text=item.name, onvalue=1, offvalue=0, variable=var)
+            check_item = Checkbutton(mult_pro_frame, text=item.name, onvalue=1, offvalue=0, variable=var)
             check_item.pack(**self.widget_opt)
             item.checkbtn = var #XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXcheckbutton變數
 
@@ -389,10 +396,14 @@ class set_frame_new_single():
         self.item_num = Entry(set_frame, width=5)
         self.widget_opt = {'fill': BOTH, 'expand': Y, 'padx': 5, 'pady': 5}
         set_frame.pack(**self.widget_opt)
-        set_title.pack(**self.widget_opt, side=LEFT)
-        self.set_input.pack(**self.widget_opt, side=LEFT)
-        item_num_title.pack(**self.widget_opt, side=LEFT)
-        self.item_num.pack(**self.widget_opt, side=LEFT)
+        set_title.pack(**self.widget_opt)
+        set_title.pack(side=LEFT)
+        self.set_input.pack(**self.widget_opt)
+        self.set_input.pack(side=LEFT)
+        item_num_title.pack(**self.widget_opt)
+        item_num_title.pack(side=LEFT)
+        self.item_num.pack(**self.widget_opt)
+        self.item_num.pack(side=LEFT)
 
     def get_name(self):
         return self.set_input.get()
